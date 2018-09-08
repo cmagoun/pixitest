@@ -46,7 +46,10 @@ function setup() {
     function gameLoop() {
         requestAnimationFrame(gameLoop);
         app.render(app.stage);
+<<<<<<< HEAD
         //actually run a game loop that manages game state
+=======
+>>>>>>> master
         gm.runAnimations();
     }
 
