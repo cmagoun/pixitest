@@ -86,7 +86,8 @@ class BaseGameManager {
     }
 
     runAnimations() {     
-        const anim = this.cm.entitiesWith(["animating", "sprite", "pos"]);
+        //const anim = this.cm.entitiesWith(["animating", "sprite", "pos"]);
+        const anim = this.cm.entitiesWith(["animating", "sprite"]);
         if(anim.length === 0) return;
 
         //console.time('update animations');

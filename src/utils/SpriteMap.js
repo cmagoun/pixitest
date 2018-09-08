@@ -1,23 +1,28 @@
-import {TexCache, Texture} from '../Aliases';
-import { Rectangle, Sprite } from 'pixi.js';
+import {TexCache, Texture, Sprite} from '../Aliases';
+import { Rectangle } from 'pixi.js';
 
 export default class SpriteMap {
     constructor() {
-        this.dc = new Map();
+        this.textureMap = new Map();
     }
 
-    load(key, sheet, x, y, w, h) {
+    loadTexture(key, sheet, x, y, w, h) {
         const tex = TexCache[sheet];
   
         const rec = new Rectangle(x, y, w, h);
         const newTex = new Texture(tex, rec);
 
-        this.dc.set(key, {sprite: new Sprite(newTex), frame:rec});
+        this.textureMap.set(key, {texture: newTex, frame:rec});
+    }
+
+    getTexture(key) {
+        const result =  this.textureMap.get(key);
+        const newTex = new Texture(result.texture, result.frame);
+        return newTex;
     }
 
     get(key) {
-        const result =  this.dc.get(key);
-        const newTex = new Texture(result.sprite.texture, result.frame);
+        const newTex = this.getTexture(key);
         return new Sprite(newTex);
     }
 
@@ -30,12 +35,13 @@ export default class SpriteMap {
             resultSprite = this.get(entity.sprite.name);
             resultSprite.x = entity.sprite.x;
             resultSprite.y = entity.sprite.y;
-            compMgr.editComponentOf(entity.id, "sprite", {initialized:true});
+            compMgr.editComponentOf(entity.id, "sprite", {initialized:true, ref:resultSprite});
         } else {
             resultSprite = entity.sprite.ref;
             if(!entity.sprite.initialized) {
                 resultSprite.x = entity.sprite.x;
                 resultSprite.y = entity.sprite.y;
+                compMgr.editComponentOf(entity.id, "sprite", {initialized:true, ref:resultSprite});
             }
         } 
 
