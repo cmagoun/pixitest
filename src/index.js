@@ -38,10 +38,11 @@ function setup() {
     spriteMap.load("wall2_h", "dist/world.png", 288, 48, 24, 24);
     spriteMap.load("floor_check_big", "dist/world.png", 120, 48, 24, 24);
     spriteMap.load("floor_check_small", "dist/world.png", 96, 48, 24, 24);
+    spriteMap.load("floor_grey", "dist/world.png", 168, 48, 24, 24);
 
-    const sceneOne = new SceneOne(gm, spriteMap, mgr);
-    const sceneTwo = new SceneTwo(gm, spriteMap, mgr);
-    mgr.setScreens([sceneOne, sceneTwo]);
+    const playerLayer = new SceneOne(gm, spriteMap, mgr);
+    const floorLayer = new SceneTwo(gm, spriteMap, mgr);
+    mgr.setScreens([floorLayer, playerLayer]);
 
 }
 

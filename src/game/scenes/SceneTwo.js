@@ -6,15 +6,13 @@ export default class SceneTwo extends Scene {
     }
 
     init() {
-        const sprite = this.spriteMap.get("wall2_x");
-        sprite.x = 250;
-        sprite.y = 10;
-        this.container.addChild(sprite);
-        // const text = new Text("TEST ME");
-        // text.x = 250;
-        // text.y = 10;
-        //text.style={fill:"#ffffff"};
-
-        //this.container.addChild(text);
+        for(let x = 0; x < 20; x++) {
+            for(let y = 0; y < 20; y++) {
+                const sprite = this.spriteMap.get("floor_grey");
+                sprite.x = x * 24;
+                sprite.y = y * 24;
+                this.container.addChild(sprite);
+            }
+        }
     }
 }

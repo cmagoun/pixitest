@@ -8,7 +8,10 @@ export default class PixiSceneManager {
         this.app.stage.removeChildren();
         this.screens = screens;
         screens.forEach(s => {
-            if(!s.initialized) s.init();
+            if(!s.initialized) {
+                s.init();
+                if(!s.initEachTime) s.initialized = true;
+            }
             this.app.stage.addChild(s.container);
         });
     }

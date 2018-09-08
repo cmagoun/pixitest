@@ -8,9 +8,7 @@ export default class SceneOne extends Scene {
     init() {
         const entities = this.gm.entities();
         entities.forEach(e => {
-            const sprite = this.spriteMap.get(e.sprite.name);
-            sprite.x = e.sprite.x;
-            sprite.y = e.sprite.y;
+            const sprite = this.spriteMap.getSprite(e, this.gm.cm);
             this.container.addChild(sprite);
         });
     }

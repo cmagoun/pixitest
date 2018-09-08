@@ -6,6 +6,7 @@ export default class Scene {
         this.spriteMap = spriteMap;
         this.mgr = sceneManager;
         this.initialized = false;
+        this.initEachTime = false;
         this.container = new Container();
     }
 }

@@ -1,10 +1,12 @@
 
-export const sprite = (name, x, y) => {
+export const sprite = (name, x, y, spriteRef) => {
     return {
         cname:"sprite",
         name,
         x,
-        y
+        y,
+        ref:spriteRef,
+        initialized:false
     };
 };
 

@@ -20,4 +20,25 @@ export default class SpriteMap {
         const newTex = new Texture(result.sprite.texture, result.frame);
         return new Sprite(newTex);
     }
+
+    getSprite(entity, compMgr) {
+        let resultSprite;
+
+        if(!entity.sprite) return undefined;
+
+        if(!entity.sprite.ref) {
+            resultSprite = this.get(entity.sprite.name);
+            resultSprite.x = entity.sprite.x;
+            resultSprite.y = entity.sprite.y;
+            compMgr.editComponentOf(entity.id, "sprite", {initialized:true});
+        } else {
+            resultSprite = entity.sprite.ref;
+            if(!entity.sprite.initialized) {
+                resultSprite.x = entity.sprite.x;
+                resultSprite.y = entity.sprite.y;
+            }
+        } 
+
+        return resultSprite;
+    }
 }
